@@ -14,6 +14,10 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
+const highScoreRoutes = require('./controllers/highScores');
+
+app.use('/highscores', highScoreRoutes);
+
 app.get('/', (req, res) => {
     res.json('Welcome to the QuizzBuzz API')
 });
