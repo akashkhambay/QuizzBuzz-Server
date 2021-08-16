@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const HighScore = require('../models/HighScore');
 
+// get all high scores
 router.get('/', async (req, res)=>{
     try {
         const scores = await HighScore.all();
@@ -12,6 +13,7 @@ router.get('/', async (req, res)=>{
     }
 });
 
+// post a new high score, body needs to contain name, category, difficulty, score
 router.post('/', async (req,res) => {
     try {
         const {name, category, difficulty, score} = req.body;
@@ -21,6 +23,18 @@ router.post('/', async (req,res) => {
     } catch (error) {
        console.log(error); 
        res.status(400)
+    }
+});
+
+// get scores by category and difficulty
+router.get('/:category/:difficulty', async (req, res)=>{
+    const {category, difficulty} = req.params;
+    try {
+        const scores = await HighScore.getByCategoryAndDifficulty(category, difficulty);
+        res.status(200).json(scores);
+    } catch (error) {
+        console.log(error); 
+        res.status(400)
     }
 });
 

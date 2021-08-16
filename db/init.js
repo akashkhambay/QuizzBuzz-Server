@@ -4,7 +4,6 @@ const uri = process.env.MONGODB_URI;
 
 const init = async () => {
     try {
-        console.log(uri);
         let client = await MongoClient.connect(uri);
         console.log('connected to database!');
         return client.db("QuizzBuzzDB");
