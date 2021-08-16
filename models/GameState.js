@@ -1,9 +1,8 @@
 class GameState{
-    constructor(category, difficulty, host, numQuestions){
+    constructor(category, difficulty, host){
         this.category = category;
         this.difficulty = difficulty;
         this.host = host;
-        this.numQuestions = numQuestions;
         this.users = [
             {
                 name: host,

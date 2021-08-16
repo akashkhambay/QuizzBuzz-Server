@@ -1,4 +1,5 @@
 const { GameState } = require('../models/GameState')
+const { io } = require('../initServer');
 
 function initialise(socket){
     console.log('user connected');
@@ -6,11 +7,12 @@ function initialise(socket){
     socket.on('disconnect', ()=>console.log('user disconnected'));
 
 
-    socket.on('create game', ({room, category, difficulty, host, numQuestions}) => {
+    socket.on('create game', ({room, category, difficulty, host}) => {
         console.log(`game created with the code ${room}`);
-        const state = GameState(category, difficulty, host, numQuestions);
+        const state = new GameState(category, difficulty, host);
+        console.log(state);
         socket.join(room);
-        socket.to(room).emit('change state', state);
+        io.to(room).emit('change state', state); //this sends to everyone in room including sender
     })
 
 
