@@ -38,4 +38,14 @@ router.get('/:category/:difficulty', async (req, res)=>{
     }
 });
 
+//checks if this username is already in the database
+router.get('/:username', async (req,res)=>{
+    try {
+        const message = await HighScore.checkUsername(req.params.username);
+        res.status(200).json(message);
+    } catch (error) {
+        res.status(400)
+    }
+});
+
 module.exports =  router ;

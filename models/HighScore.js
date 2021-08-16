@@ -47,6 +47,20 @@ class HighScore {
         })
     }
 
+    static checkUsername(username){
+        return new Promise (async (resolve,reject) => {
+            try {
+                const db = await init();
+                const data = await db.collection('highscores').find({name: {$eq: username}}).toArray();
+                const doesUserExist = data.length === 0 ? false : true;
+                const message = doesUserExist ? 'username taken' : 'username does not exist'
+                resolve(message);
+            } catch (error){
+                reject(error);
+            }
+        })
+    }
+
 }
 
 module.exports = HighScore;
