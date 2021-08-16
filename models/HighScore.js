@@ -21,6 +21,18 @@ class HighScore {
             }
         })
     }
+
+    static all(){
+        return new Promise (async (resolve,reject) => {
+            try {
+                const db = await init();
+                const data = await db.collection('highscores').find().toArray();
+                resolve(data);
+            } catch (error){
+                reject(error);
+            }
+        })
+    }
 }
 
 module.exports = HighScore;

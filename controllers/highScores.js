@@ -2,8 +2,14 @@ const express = require('express');
 const router = express.Router();
 const HighScore = require('../models/HighScore');
 
-router.get('/', (req, res)=>{
-    console.log('getting all high scores...')
+router.get('/', async (req, res)=>{
+    try {
+        const scores = await HighScore.all();
+        res.status(200).json(scores);
+    } catch (error) {
+        console.log(error); 
+        res.status(400)
+    }
 });
 
 router.post('/', async (req,res) => {
