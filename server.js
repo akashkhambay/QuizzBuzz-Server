@@ -9,6 +9,7 @@ const io = require("socket.io")(server, {
     }
   });
 const cors = require('cors');
+const { initialise } = require('./socketEvents');
 
 
 app.use(cors());
@@ -22,10 +23,7 @@ app.get('/', (req, res) => {
     res.json('Welcome to the QuizzBuzz API')
 });
 
-io.on("connection", socket => {
-    console.log('user connected')
-    socket.on('disconnect', ()=>console.log('user disconnected'))
-});
+io.on("connection", socket => initialise(socket));
 
 module.exports = { server };
 
