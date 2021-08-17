@@ -1,5 +1,6 @@
 class GameState{
-    constructor(category, difficulty, host){
+    constructor(category, difficulty, host, roomName){
+        this.roomName = roomName;
         this.category = category;
         this.difficulty = difficulty;
         this.host = host;
