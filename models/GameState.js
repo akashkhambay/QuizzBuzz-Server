@@ -12,6 +12,7 @@ class GameState{
         ];
         this.questionNumber = 1;
         this.questions = questions;
+        this.isGameStarted = false;
     }
 }
 
