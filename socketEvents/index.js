@@ -9,10 +9,10 @@ function initialise(socket){
 
     socket.on('create game', ({room, category, difficulty, host}) => {
         console.log(`game created with the code ${room}`);
-        const state = new GameState(category, difficulty, host);
+        const state = new GameState(category, difficulty, host, room);
         console.log(state);
         socket.join(room);
-        io.to(room).emit('change state', state); //this sends to everyone in room including sender
+        io.to(room).emit('init state', state); //this sends to everyone in room including sender
     })
 
 
