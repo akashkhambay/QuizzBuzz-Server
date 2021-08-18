@@ -26,8 +26,9 @@ function initialise(socket){
         io.to(state.roomName).emit('change state', state);
     })
     
-    socket.on('change gameState', (state) => {
-        
+    socket.on('update player score', ({room, user}) => {
+        socket.to(room).emit('update opponents score', user);
+        console.log(`updating score of ${user} in room: ${room}`);
     })
 }
 
