@@ -7,7 +7,8 @@ class GameState{
         this.users = [
             {
                 name: host,
-                score: 0
+                score: 0,
+                hasCompletedQuiz: false
             }
         ];
         this.questionNumber = 1;
