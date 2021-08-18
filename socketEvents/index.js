@@ -29,6 +29,10 @@ function initialise(socket){
         socket.to(room).emit('update opponents score', {user, score});
         console.log(`updating score of ${user} in room: ${room} with a score of ${score}`);
     })
+
+    socket.on('complete quiz', ({room, user}) => {
+        io.to(room).emit('update opponent completion', user)
+    })
 }
 
 module.exports = { initialise };
