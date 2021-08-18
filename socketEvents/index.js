@@ -16,7 +16,6 @@ function initialise(socket){
 
 
     socket.on('join game', ({room, username}) => {
-        // check if the room exists first and if not send back an error message
         console.log(`${username} joined with the code ${room}`);
         socket.join(room);
         socket.to(room).emit('user joining waiting room', username);
@@ -26,9 +25,9 @@ function initialise(socket){
         io.to(state.roomName).emit('change state', state);
     })
     
-    socket.on('update player score', ({room, user}) => {
-        socket.to(room).emit('update opponents score', user);
-        console.log(`updating score of ${user} in room: ${room}`);
+    socket.on('update player score', ({room, user, score}) => {
+        socket.to(room).emit('update opponents score', {user, score});
+        console.log(`updating score of ${user} in room: ${room} with a score of ${score}`);
     })
 }
 
