@@ -21,7 +21,7 @@ A simple Quizz App, which allows users to create and join a game, select a categ
 ### Installation
 
 - Clone or download the repo
-- Open terminal and navigate to `habit-t` folder
+- Open terminal and navigate to `QuizzBuzz-Server` folder
 - Navigate to the server folder and run `npm install` to install dependencies
 
 ## Technologies
@@ -50,6 +50,7 @@ A simple Quizz App, which allows users to create and join a game, select a categ
 - [NodeJs](https://nodejs.org/en/)
 - [NPM](https://www.npmjs.com/)
   - [cors](https://www.npmjs.com/package/cors)
+- [socket.io](https://socket.io/)
 
 </details>
 
